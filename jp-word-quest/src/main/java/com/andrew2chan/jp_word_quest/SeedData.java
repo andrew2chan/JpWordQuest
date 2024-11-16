@@ -4,19 +4,22 @@ import com.andrew2chan.jp_word_quest.domain.Word;
 import com.andrew2chan.jp_word_quest.repository.WordRepository;
 import com.andrew2chan.jp_word_quest.service.WordService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
+
 
 import java.io.File;
 import java.util.List;
 
 @Component
-final class SeedData implements CommandLineRunner {
+@Transactional
+public class SeedData implements CommandLineRunner {
     private final WordService wordService;
     private final WordRepository wordRepository;
 
-    private SeedData(WordService wordService, WordRepository wordRepository) {
+    public SeedData(WordService wordService, WordRepository wordRepository) {
         this.wordService = wordService;
         this.wordRepository = wordRepository;
     }

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "word")
 public class Word {
@@ -16,12 +15,21 @@ public class Word {
     private Long id;
 
     private String word;
+    private String vocab;
+    private String jlpt;
+    private String furigana;
+
+    public Word() {
+    }
 
     @Override
     public String toString() {
         return "Word{" +
                 "id=" + id +
                 ", word='" + word + '\'' +
+                ", vocab='" + vocab + '\'' +
+                ", jlpt='" + jlpt + '\'' +
+                ", furigana='" + furigana + '\'' +
                 '}';
     }
 }
