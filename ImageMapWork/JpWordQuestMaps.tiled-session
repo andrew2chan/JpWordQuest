@@ -35,6 +35,7 @@
     "openFiles": [
     ],
     "project": "JpWordQuestMaps.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
         "tilemap_packed.tsx",
         "tilemap.tsx",

@@ -34,6 +34,11 @@ export class Preloader extends Scene
 
         // Setup the JSON file so we know where everything should be located
         this.load.tilemapTiledJSON("map", "Map.json");
+
+        this.load.spritesheet("character", "CharSprite21x21.png", {
+            frameWidth: 21,
+            frameHeight: 21
+        })
     }
 
     create ()
