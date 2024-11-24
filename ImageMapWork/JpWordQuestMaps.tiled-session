@@ -3,15 +3,31 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "Map.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
         "Main.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 2
         },
+        "Map.tmx": {
+            "scale": 0.9243243243243243,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 514.4298245614036,
+                "y": 388.39181286549706
+            }
+        },
+        "Map.tmx#backgrounds": {
+            "scaleInDock": 1
+        },
         "Map.tmx#tilemap_packed": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "tilemap.tsx": {
@@ -33,10 +49,12 @@
     "map.tileWidth": 21,
     "map.width": 49,
     "openFiles": [
+        "Map.tmx"
     ],
     "project": "JpWordQuestMaps.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "Map.tmx",
         "tilemap_packed.tsx",
         "tilemap.tsx",
         "Main.tsx"

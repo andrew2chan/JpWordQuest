@@ -38,7 +38,9 @@ export class Preloader extends Scene
         this.load.spritesheet("character", "CharSprite21x21.png", {
             frameWidth: 21,
             frameHeight: 21
-        })
+        });
+
+        this.load.bitmapFont("pixelfont", "font/Pixely_0.png", "font/Pixely.fnt");
     }
 
     create ()

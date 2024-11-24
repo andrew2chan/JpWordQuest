@@ -49,7 +49,7 @@ export class MainMenu extends Scene
 
         this.physics.add.collider(this.player, groundLayer!);
 
-        this.playerIdleAnimConfig = {
+        this.playerIdleAnimConfig = { //create idle player anim
             key: 'idle',
             frames: this.anims.generateFrameNumbers("character", {
                 start: 0,
@@ -60,7 +60,7 @@ export class MainMenu extends Scene
             repeat: -1
         }
 
-        this.playerAttackAnimConfig = {
+        this.playerAttackAnimConfig = { //create attack player anim
             key: 'attack',
             frames: this.anims.generateFrameNumbers("character", {
                 start: 0,
@@ -71,12 +71,15 @@ export class MainMenu extends Scene
             repeat: 0
         }
 
+        //add anims so they can be used
         this.anims.create(this.playerIdleAnimConfig);
         this.anims.create(this.playerAttackAnimConfig);
 
         this.player?.anims.play('idle');
 
         this.cursors = this.input.keyboard?.createCursorKeys();
+
+        this.add.bitmapText(60, 60, "pixelfont", "lalalala");
 
         EventBus.emit('current-scene-ready', this);
     }
