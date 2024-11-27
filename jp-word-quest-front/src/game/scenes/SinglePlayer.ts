@@ -2,7 +2,7 @@ import { GameObjects, Scene } from 'phaser';
 
 import { EventBus } from '../EventBus';
 
-export class MainMenu extends Scene
+export class SinglePlayer extends Scene
 {
     private player: Phaser.Physics.Arcade.Sprite | null = null;
     private playerIdleAnimConfig: object = {};
@@ -11,7 +11,7 @@ export class MainMenu extends Scene
 
     constructor ()
     {
-        super('MainMenu');
+        super('SinglePlayer');
     }
 
     create ()
@@ -21,9 +21,10 @@ export class MainMenu extends Scene
 
         // Adds the tile map that was loaded into the preloader
         const tileset = map.addTilesetImage("tilemap_packed", "tiles");
+        const backgroundset = map.addTilesetImage("backgrounds", "background");
 
         // Make the layers
-        const backgroundLayer = map.createLayer("Background", tileset!, 0, 0);
+        const backgroundLayer = map.createLayer("Background", backgroundset!, 0, 0);
         const foregroundLayer = map.createLayer("Foreground", tileset!, 0, 0);
         const groundLayer = map.createLayer("Ground", tileset!, 0, 0);
 
@@ -79,7 +80,7 @@ export class MainMenu extends Scene
 
         this.cursors = this.input.keyboard?.createCursorKeys();
 
-        this.add.bitmapText(60, 60, "pixelfont", "lalalala");
+        //this.add.bitmapText(60, 60, "pixelfont", "lalalala");
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -92,9 +93,4 @@ export class MainMenu extends Scene
         }
     }
     
-    changeScene ()
-    {
-
-        this.scene.start('Game');
-    }
 }

@@ -1,5 +1,5 @@
 import { Boot } from './scenes/Boot';
-import { MainMenu } from './scenes/MainMenu';
+import { SinglePlayer } from './scenes/SinglePlayer';
 import { AUTO, Game } from 'phaser';
 import { Preloader } from './scenes/Preloader';
 
@@ -7,8 +7,8 @@ import { Preloader } from './scenes/Preloader';
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Phaser.Types.Core.GameConfig = {
     type: AUTO,
-    width: 1024,
-    height: 768,
+    width: 400,
+    height: 280,
     parent: 'game-container',
     physics: {
         default: "arcade",
@@ -19,13 +19,14 @@ const config: Phaser.Types.Core.GameConfig = {
     },
     scale: {
         mode: Phaser.Scale.FIT,
+        zoom: Phaser.Scale.ZOOM_2X,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    backgroundColor: '#028af8',
+    //backgroundColor: '#028af8',
     scene: [
         Boot,
         Preloader,
-        MainMenu
+        SinglePlayer
     ]
 };
 
