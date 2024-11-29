@@ -82,12 +82,9 @@ export class SinglePlayer extends Scene
 
         //this.add.bitmapText(60, 60, "pixelfont", "lalalala");
 
-        const dataLoaded = (data) => {
-            this.add.bitmapText(60, 60, "pixelfont", data[0].vocab);
-            console.log(data);
-        }
-
-        EventBus.on("data-loaded", dataLoaded);
+        //console.log(this);
+        EventBus.on("data-loaded", this.dataLoaded);
+        //this.dataLoaded("test");
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -99,5 +96,16 @@ export class SinglePlayer extends Scene
             this.player?.anims.playAfterRepeat('idle');
         }
     }
+
+    dataLoaded(d) {
+        //console.log(this);
+        //this.add.bitmapText(60, 60, "pixelfont", data);
+        this.add.bitmapText(60, 60, "pixelfont", d[0].vocab);
+        console.log(d);
+    }
     
+    shutdown() {
+        EventBus.on("data-loaded", this.dataLoaded);
+        this.scene.stop();
+    }
 }
