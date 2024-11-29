@@ -82,6 +82,13 @@ export class SinglePlayer extends Scene
 
         //this.add.bitmapText(60, 60, "pixelfont", "lalalala");
 
+        const dataLoaded = (data) => {
+            this.add.bitmapText(60, 60, "pixelfont", data[0].vocab);
+            console.log(data);
+        }
+
+        EventBus.on("data-loaded", dataLoaded);
+
         EventBus.emit('current-scene-ready', this);
     }
 
