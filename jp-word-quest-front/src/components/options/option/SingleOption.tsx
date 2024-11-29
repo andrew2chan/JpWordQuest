@@ -1,4 +1,5 @@
 import { RefType } from "../Options";
+import './SingleOption.css';
 
 const SingleOption = ({ phaserRef }: RefType) => {
     return (

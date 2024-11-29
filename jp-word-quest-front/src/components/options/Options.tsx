@@ -58,20 +58,23 @@ const Options = ({ phaserRef }: RefType) => {
     },[phaserRef.current?.game?.canvas.height, phaserRef.current?.game?.canvas.width]);*/
 
     useEffect(() => {
-        window.addEventListener("resize", handleResize); //handles resizing
-        window.addEventListener("load", handleResize); //handles assigning position of buttons on startup
+        phaserRef.current?.game?.scale.on("resize", handleResize); //listens to the phaser resize event
 
         return () => {
-            window.removeEventListener("resize", handleResize);
-            window.removeEventListener("load", handleResize);
-        };
+            phaserRef.current?.game?.scale.off("resize", handleResize); //remove event listener in the case of unmount
+        }
     },[])
 
     return(
         <div className="options-container" ref={optionsContainer} style={optionsStyle}>
             {
                 optionsStyle && (
-                    <SingleOption phaserRef={phaserRef} />
+                    <>
+                        <SingleOption phaserRef={phaserRef} />
+                        <SingleOption phaserRef={phaserRef} />
+                        <SingleOption phaserRef={phaserRef} />
+                        <SingleOption phaserRef={phaserRef} />
+                    </>
                 )
             }
         </div>
