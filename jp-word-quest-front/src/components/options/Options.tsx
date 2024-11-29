@@ -71,9 +71,6 @@ const Options = ({ phaserRef }: RefType) => {
                 optionsStyle && (
                     <>
                         <SingleOption phaserRef={phaserRef} />
-                        <SingleOption phaserRef={phaserRef} />
-                        <SingleOption phaserRef={phaserRef} />
-                        <SingleOption phaserRef={phaserRef} />
                     </>
                 )
             }

@@ -2,8 +2,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 1em;
     place-items: center;
     box-sizing: border-box;
-    padding: 1em;
 }
