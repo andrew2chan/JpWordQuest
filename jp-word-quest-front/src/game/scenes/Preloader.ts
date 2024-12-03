@@ -41,6 +41,11 @@ export class Preloader extends Scene
             frameHeight: 21
         });
 
+        this.load.spritesheet("enemy1", "Enemy1Sprite21x21.png", {
+            frameWidth: 21,
+            frameHeight: 21
+        })
+
         this.load.bitmapFont("pixelfont", "font/Pixely_0.png", "font/Pixely.fnt");
     }
 

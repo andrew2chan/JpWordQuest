@@ -7,7 +7,11 @@ export class SinglePlayer extends Scene
     private player: Phaser.Physics.Arcade.Sprite | null = null;
     private playerIdleAnimConfig: object = {};
     private playerAttackAnimConfig: object = {};
-    private cursors;
+    private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+    private enemy: Phaser.Physics.Arcade.Sprite | null = null;
+    private enemyWalkAnimConfig: { //create enemy walk anim
+        key: string; frames: Phaser.Types.Animations.AnimationFrame[]; frameRate: number; repeat: number;
+    };
 
     constructor ()
     {
@@ -46,9 +50,13 @@ export class SinglePlayer extends Scene
             }
         });
 
-        this.player = this.physics.add.sprite(20, highestY - 10, 'character', 0); //offsets by 10 pixel so that we start above ground
+        this.player = this.physics.add.sprite(20, highestY - 10, 'character'); //offsets by 10 pixel so that we start above ground
+
+        this.enemy = this.physics.add.sprite(this.game.canvas.width - 20 , highestY - 10, 'enemy1').setFlipX(true);
 
         this.physics.add.collider(this.player, groundLayer!);
+
+        this.physics.add.collider(this.enemy, groundLayer!);
 
         this.playerIdleAnimConfig = { //create idle player anim
             key: 'idle',
@@ -68,23 +76,45 @@ export class SinglePlayer extends Scene
                 end: 2,
                 frames: [0,1]
             }),
-            frameRate: 1,
+            frameRate: 5,
             repeat: 0
+        }
+
+        this.enemyWalkAnimConfig = { //create enemy walk anim
+            key: 'walk-left',
+            frames: this.anims.generateFrameNumbers("enemy1", {
+                start: 0,
+                end: 1,
+                frames: [0,1]
+            }),
+            frameRate: 10,
+            repeat: -1
         }
 
         //add anims so they can be used
         this.anims.create(this.playerIdleAnimConfig);
         this.anims.create(this.playerAttackAnimConfig);
+        this.anims.create(this.enemyWalkAnimConfig);
 
         this.player?.anims.play('idle');
 
-        this.cursors = this.input.keyboard?.createCursorKeys();
+        if(this.input.keyboard == null) return;
+        this.cursors = this.input.keyboard.createCursorKeys();
 
-        //this.add.bitmapText(60, 60, "pixelfont", "lalalala");
+        let tween = this.tweens.add({
+            targets: this.enemy,
+            x: { value: this.player.x},
+            duration: 2000,
+            onStart: () => {
+                this.enemy?.anims.play("walk-left");
+            },
+            onComplete: () => {
+                this.enemy?.anims.stop();
+                tween.stop();
+            }
+        })
 
-        //console.log(this);
-        EventBus.on("data-loaded", this.dataLoaded);
-        //this.dataLoaded("test");
+        tween.play();
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -96,16 +126,8 @@ export class SinglePlayer extends Scene
             this.player?.anims.playAfterRepeat('idle');
         }
     }
-
-    dataLoaded(d) {
-        //console.log(this);
-        //this.add.bitmapText(60, 60, "pixelfont", data);
-        this.add.bitmapText(60, 60, "pixelfont", d[0].vocab);
-        console.log(d);
-    }
     
     shutdown() {
-        EventBus.on("data-loaded", this.dataLoaded);
         this.scene.stop();
     }
 }
