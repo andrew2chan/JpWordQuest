@@ -1,21 +1,22 @@
-import { RefType } from "../Options";
+import { RefType, SingleOptionType } from "../Options";
 import './SingleOption.css';
 
-const SingleOption = ({ phaserRef }: RefType) => {
+type SingleOptionRefType = {
+    options: SingleOptionType[]
+}
+
+const SingleOption = ({ options }: SingleOptionRefType) => {
     return (
         <>
-            <button className="option" style={{ background: "radial-gradient(circle at 100% 100%, #B0E0E6, #E6E6FA, #FFDAB9)" }} >
-                test
-            </button>
-            <button className="option" style={{ background: "radial-gradient(circle at 0% 100%, #B0E0E6, #E6E6FA, #FFDAB9)" }} >
-                test
-            </button>
-            <button className="option" style={{ background: "radial-gradient(circle at 100% 0, #B0E0E6, #E6E6FA, #FFDAB9)" }} >
-                test
-            </button>
-            <button className="option" style={{ background: "radial-gradient(circle at 0% 0%, #B0E0E6, #E6E6FA, #FFDAB9)" }} >
-                test
-            </button>
+            {
+                options.map((option) => {
+                    return (
+                        <button className="option" id={option.id} style={{...option.style}} key={option.id}>
+                            {option.vocab}
+                        </button>
+                    )
+                })
+            }
         </>
     )
 }
